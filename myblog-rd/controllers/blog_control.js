@@ -1,18 +1,21 @@
-
+const date = require('../utils/dateTimeUtil')
 const blogModels = require('../models/blog_models');
-
 module.exports = {
     async welcom(ctx) {
+        // let time = new Date('2021-01-25T12:27:01.000Z');
+        // console.log(date.formatTime(time,"YYYY-mm-dd HH:MM"));
         //查询所有文章数据
+        let time;
         let results = await blogModels.getBlogData();
-        let login = ctx.session["loginUser"];//取出session为undefinde
-        console.log(login);
+        for(i in results){
+            let {post_time} = results[i];
+            time = new Date(post_time);
+            results[i].post_time = date.formatTime(time,"YYYY-mm-dd HH:MM");
+        }
         ctx.body = {
             blogs: results,
-            loginUser: login,
         };
     },
-
 
     async blogDetail(ctx) {
         let results = await blogModels.getBlogDetail(ctx.query.blogId);
@@ -33,10 +36,10 @@ module.exports = {
                     comm_id: obj.comm_id,
                     comm_content: obj.comm_content,
                     username: obj.username,
-                    comm_post_time: obj.comm_post_time,
+                    comm_post_time:obj.comm_post_tim,
                 })
             }
-            ctx.body = { blogs: blogInfo, loginUser: ctx.session["loginUser"], }//这里有问题
+            ctx.body = { blogs: blogInfo,}
         } else {
 
             ctx.body = { message: "这篇文章不存在" }
