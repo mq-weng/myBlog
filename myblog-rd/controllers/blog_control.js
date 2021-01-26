@@ -22,6 +22,8 @@ module.exports = {
         console.log(results);
         if (results.length > 0) {
             let { title, content, post_time, blog_id } = results[0];
+            let time = new Date(post_time);
+            post_time = date.formatTime(time,"YYYY-mm-dd HH:MM");
             let blogInfo = {
                 blog_id,
                 title,
@@ -32,11 +34,13 @@ module.exports = {
             blogInfo.comments = [];
             for (let i = 0; i < results.length; i++) {
                 let obj = results[i];
+                time = new Date(obj.post_time);
+                obj.post_time = date.formatTime(time,"YYYY-mm-dd HH:MM");
                 blogInfo.comments.push({
                     comm_id: obj.comm_id,
                     comm_content: obj.comm_content,
                     username: obj.username,
-                    comm_post_time:obj.comm_post_tim,
+                    comm_post_time:obj.post_time,
                 })
             }
             ctx.body = { blogs: blogInfo,}
@@ -50,25 +54,33 @@ module.exports = {
         let { user_id, content, title } = ctx.request.body;
         if (user_id ) {
             let results = await blogModels.savePostBlogs({ user_id, content, title });
-            if (results.blog_id.length > 0) {
+            if (results.insertId) {
                 //通过判断insertId是不是有正常值，如果有，说明插入成功
+                ctx.body = {
+                    state:'success',
+                }
                 console.log('发表成功');
             } else {
                 ctx.body = {
                     message: "发表失败!",
+                    state: 'fail'
                 };
             }
         }
     },
     async postComm(ctx) {
         let { user_id, blog_id, content } = ctx.request.body;
-        let results = await blogModels.savePostBlogs({ user_id, blog_id, content } );
-        console.log('comment+'+results);
-        if (results.comm_id.length > 0) {
+        let results = await blogModels.savePostComm({ user_id, blog_id, content } );
+        if (results.insertId) {
             //通过判断insertId是不是有正常值，如果有，说明插入成功
+            ctx.body = {
+                state: 'success',
+                message: '发表成功'
+            }
             console.log('发表成功');
         } else {
             ctx.body = {
+                state: 'fail',
                 message: "发表失败!",
             };
         }

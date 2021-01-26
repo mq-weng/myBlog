@@ -10,13 +10,13 @@ var pool = mysql.createPool({
 });
 
 module.exports = {
-  query(sql,values) {
+  query(sql,values,) {
     return new Promise((resolve,reject) => {
         pool.getConnection(function(err, connection) {
             if (err) throw err; // not connected!
            
             // Use the connection
-            connection.query(sql, values,function (error, results, fields) {
+            connection.query(sql, values,function (error, results) {
               // When done with the connection, release it.
               connection.release();
               // Handle error after the release.

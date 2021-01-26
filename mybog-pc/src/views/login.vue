@@ -31,6 +31,7 @@ export default {
         .then((res) => {
           let { inputState, message, token, state ,loginUser,userId} = res.data;
           this.message = message;
+          //登陆失败字不会消失
           if (inputState != "fail") {
             if (state == "success") {
               //获取token

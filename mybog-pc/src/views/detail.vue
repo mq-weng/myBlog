@@ -1,29 +1,30 @@
 <template>
-  <div class="container" id="app">
+  <div id="app">
     <com-header :loginUser="loginUser"></com-header>
-    <div class="blog">
-      <div class="blog-title">
+    <div class="container">
+      <div >
         <h3>{{ blogs.title }}</h3>
         <span> {{ blogs.post_time }} </span>
       </div>
-      <div class="blog-content">{{ blogs.content }}</div>
-      <div class="comments">
-        <h4 style="background: #cccccc">评论</h4>
-        <h4>发表评论: <button @click="postComm">发表评论</button></h4>
+      <div >{{ blogs.content }}</div>
+      <div >
+        <h4 class="comments">评论</h4>
+        <h4>发表评论: <button @click="postComm">发表评论</button>{{message}}</h4>
         <textarea
+          style="background: #cccccc"
           name=""
           id=""
-          cols="30"
+          cols="110"
           rows="10"
           v-model="textComm"
         ></textarea>
-        <div class="comment" v-for="item in comments" :key="item.comm_id">
-          <div class="comment-content">
-            {{ item.comm_content }}
+        <div  v-for="item in comments" :key="item.comm_id" class="comments">
+          <div >
+            <span>评论内容：</span>{{ item.comm_content }}
           </div>
-          <div class="comment-info">
-            <span class="userinfo">{{ item.username }}</span>
-            <span class="post-time">{{ item.comm_post_time }}</span>
+          <div class="user-time">
+            <span style="margin-right:10px">{{ item.username }}</span>
+            <span >{{ item.comm_post_time }}</span>
           </div>
         </div>
       </div>
@@ -40,6 +41,7 @@ export default {
       comments: [],
       loginUser: "",
       textComm: "",
+      message: '',
     };
   },
   name: "app",
@@ -69,12 +71,17 @@ export default {
       let userId = localStorage.getItem("userId");
       this.$http
         .post("/blog/postComm", {
-            user_id: userId,
-            blog_id: this.blogId,
-            content: this.textComm,
+          user_id: userId,
+          blog_id: this.blogId,
+          content: this.textComm,
         })
         .then((res) => {
           console.log(res);
+          let {state, message} = res.data;
+          this.message = message;
+          if(state == 'success'){
+            location.reload();//发表成功
+          }
         });
     },
   },
@@ -82,25 +89,19 @@ export default {
 </script>
 
 <style scoped>
-.blog {
+.container{
+  width: 815px;
   margin: 20px auto;
-  padding: 20px;
 }
-.blog-title {
-  padding: 10px;
-}
-.blog-content {
-  padding: 10px;
-}
-.comment {
+.comments{
+  background-color: #cccccc;
   margin-top: 20px;
-  padding: 20px;
-  background: #cccccc;
+  position: relative;
+  height:80px;
 }
-.comment-info {
-  float: right;
-}
-.userinfo {
-  padding-right: 20px;
+.user-time{
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
 }
 </style>

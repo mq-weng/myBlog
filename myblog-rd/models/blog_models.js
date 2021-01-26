@@ -13,10 +13,10 @@ module.exports = {
         WHERE blog.blog_id=?`,[blogId]);
     },
     savePostBlogs(blog){
-        return db.query(`INSERT INTO t_blog SET ?`,[blog]);
+        return db.query(`INSERT INTO t_blog SET ?`,[blog])
     },
     savePostComm(blogComm){
-        return db.query(`INSERT INTO t_comment SET ?`,[blogComm])
+        return db.query(`INSERT INTO t_comment SET ?`,[blogComm])  
     }
 
 }

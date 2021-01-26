@@ -7,7 +7,7 @@ router.get("/list",verifyAuth.verifyAuthration, blogControl.welcom);
 
 router.get("/blogDetail",verifyAuth.verifyAuthration,blogControl.blogDetail)
 
-router.post("/postBlogs",blogControl.post);
+router.post("/postBlogs",verifyAuth.verifyAuthration,blogControl.post);
 
-router.post('/postComm',blogControl.postComm)
+router.post('/postComm',verifyAuth.verifyAuthration,blogControl.postComm)
 module.exports = router
