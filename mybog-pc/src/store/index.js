@@ -11,26 +11,27 @@ export default new Vuex.Store({
     count: 0,
   },
   mutations: {
-    setUser(state,loginUser){
+    setUser(state, loginUser) {
       console.log(loginUser);
       state.loginUser = loginUser;
-      localStorage.setItem('loginUser',loginUser);
+      localStorage.setItem('loginUser', loginUser);
       state.count++;
     },
-    setUserId(state,userId){
+    setUserId(state, userId) {
       state.userId = userId;
-      localStorage.setItem('userId',userId);
+      localStorage.setItem('userId', userId);
       state.count++;
     },
+
   },
   actions: {
-    setToken(state,token){
+    setToken(state, token) {
       state.token = token;
       console.log(token);
       //放到localStorage中
-      localStorage.setItem('mytoken',token);
+      localStorage.setItem('mytoken', token);
     },
-    logOut(state){
+    logOut(state) {
       state.token = null;
       localStorage.removeItem('mytoken');
       console.log('logOut')

@@ -34,13 +34,14 @@ module.exports = {
             blogInfo.comments = [];
             for (let i = 0; i < results.length; i++) {
                 let obj = results[i];
-                time = new Date(obj.post_time);
-                obj.post_time = date.formatTime(time,"YYYY-mm-dd HH:MM");
+                let timecomm = new Date(obj.comm_post_time);
+                console.log(timecomm);
+                obj.comm_post_time = date.formatTime(timecomm,"YYYY-mm-dd HH:MM");
                 blogInfo.comments.push({
                     comm_id: obj.comm_id,
                     comm_content: obj.comm_content,
                     username: obj.username,
-                    comm_post_time:obj.post_time,
+                    comm_post_time:obj.comm_post_time,
                 })
             }
             ctx.body = { blogs: blogInfo,}

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from '../store'
-
+import app from '../main'
 const instance = axios.create({
     baseURL: 'http://localhost:3000',
     timeout: 60000,
@@ -28,7 +28,7 @@ instance.interceptors.response.use(function (response) {
     let {status} = error.response;
     if(status == 401){
         store.dispatch('logOut');
-        location.href='/login';
+        app.$router.push('/login');
     }
     return Promise.reject(error);
   });

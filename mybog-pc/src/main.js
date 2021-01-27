@@ -11,8 +11,12 @@ Vue.config.productionTip = false
 
 //自定义的hppt
 Vue.prototype.$http=http
-new Vue({
+let app = new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
+
+export default app//将vue实例化对象导出
