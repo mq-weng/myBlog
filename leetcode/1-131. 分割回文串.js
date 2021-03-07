@@ -14,6 +14,7 @@ function divide(s) {
         // isPalindrome(str) ? arr.push(str) : divide();
         if (isPalindrome(str)) {
             arr.push(str)
+            
             divide(s.slice(i, s.length))
         }
         else {
