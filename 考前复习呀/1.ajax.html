@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="myDiv"></div>
+    <script>
+      var xml;
+      if (window.XMLHttpRequest) {
+        xml = new XMLHttpRequest();
+      } else {
+        //code for IE6, IE5
+        xml = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xml.open("GET", "./1-1.text", true); //异步用true
+      xml.send();
+      /*xml.open("POST", "1-1.json", true);//post访问静态资源报405
+      xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      xml.send("fname=Bill&lname=Gates");*/
+      // xml.send()
+
+      //在 onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。当 readyState 等于 4 且状态为 200 时，表示响应已就绪：
+      xml.onreadystatechange = function () {
+        if (xml.readyState == 4 && xml.status == 200) {
+          document.getElementById("myDiv").innerHTML = xml.responseText;
+        }
+      };
+    </script>
+  </body>
+</html>
+
