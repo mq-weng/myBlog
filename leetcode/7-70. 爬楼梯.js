@@ -1,3 +1,4 @@
+//类似斐波那契数列
 var climbStairs = function (n) {
     let floor1 = 1;
     let floor2 = 2;
