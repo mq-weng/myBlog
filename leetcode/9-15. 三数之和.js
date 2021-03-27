@@ -10,7 +10,7 @@ var threeSum = function (nums) {
         if (nums[i] > 0){
             return res
         }
-        if (i > 0 && nums[i] == nums[i-1]) {
+        if (i > 0 && nums[i] == nums[i-1]) {  //去重
             continue
         }
         left = i + 1;
@@ -20,10 +20,10 @@ var threeSum = function (nums) {
                 res.push([nums[i], nums[left], nums[right]]);
                 left++;
                 right--;
-				while (left < right && nums[left] == nums[left - 1]) {
+				while (left < right && nums[left] == nums[left - 1]) { //去重
 					left++;
 				}
-                while (left < right && nums[right] == nums[right+1]) {
+                while (left < right && nums[right] == nums[right+1]) {  //去重
                     right--
                 }
             }
