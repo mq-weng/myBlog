@@ -14,6 +14,7 @@ console.log(ne.next())
 console.log(ne.next())
 console.log(ne.next())
 console.log(ne.next())
+
 console.log(next_id().next())//0  不能这样写,这样写相当于重复调用next_id(),归零了
 
 //方法2
