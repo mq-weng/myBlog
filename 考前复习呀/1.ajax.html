@@ -18,10 +18,8 @@
       }
       xml.open("GET", "./1-1.text", true); //异步用true
       xml.send();
-      /*xml.open("POST", "1-1.json", true);//post访问静态资源报405
-      xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-      xml.send("fname=Bill&lname=Gates");*/
-      // xml.send()
+      //xml.open("POST", "./辅助文件/1-1.asp", true);//405后端没有相应的接收方法去接受数据
+      xml.send()
 
       //在 onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。当 readyState 等于 4 且状态为 200 时，表示响应已就绪：
       xml.onreadystatechange = function () {
@@ -32,4 +30,3 @@
     </script>
   </body>
 </html>
-
