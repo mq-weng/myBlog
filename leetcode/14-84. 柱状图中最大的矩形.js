@@ -2,46 +2,28 @@
  * @param {number[]} heights
  * @return {number}
  */
- var largestRectangleArea = function(heights) {
-    let right = heights.length, min ,max, num = 0;
-    while (right) {
-        right = heights.length;
-        for (let i = 0; i <heights.length; i++) {
-            min = (i == 0 ? heights[i] : Math.min(heights[i], min))
-        }
-        // console.log(min)
-        max = (num == 0 ? min * right : Math.max(min * right, max));
-        if (heights[0] <= heights[right - 1]){
-            heights.splice(0, 1) //从左边删除一个
-        }
-        else {
-             heights.pop() //从右边删除一个
-        }
-        num++;
-    }
-    return max
-};
 
+//自己解法
 var largestRectangleArea = function(heights) {
-    let stack = [-1];
+    let stack = [{value: -1, key: -1}]
     let top, area = 0;
+    heights.push(0);
     for (let i = 0; i < heights.length; i++) {
-        top = stack[stack.length - 1];
-        while (top > heights[i]) {
-            top = stack[stack.length - 1];
-            stack.pop()
-            area = Math.max(area, top.value * (i - stack[stack.length - 1].key - 1));
+        while (stack.length > 1 && stack[stack.length - 1].value > heights[i]) {
+            top = stack[stack.length - 1].value; //栈顶元素
+             stack.pop()
+            topKey = stack[stack.length - 1].key;
+            area = Math.max(area, top * (i - topKey - 1));
         }
-        stack.push({
+        stack.push({ //入栈
             value: heights[i],
             key: i,
         })
     }
-    
+    return area
 };
 
-
-
+//dalaode
 const largestRectangleArea = function (heights) {
     let maxArea = 0;
     const stack = [];
@@ -57,3 +39,5 @@ const largestRectangleArea = function (heights) {
     return maxArea;
 };
   
+
+
