@@ -35,7 +35,7 @@ const maxSlidingWindow = (nums, k) => {
   
       // When i + 1 - k >= 0, the window is fully overlapping nums
       const j = i + 1 - k; //控制每个窗口的起点0，1，2·····
-      if (j >= 0) {
+      if (j >= 0) { //得形成一个窗口才能得到最大的值
         res.push(q[0]);    //q[0]是当前窗口的最大值
         if (nums[j] === q[0]) q.shift(); // 窗口的起点值，相等时窗口满了
       }
