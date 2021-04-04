@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <a href="">ddd</a>
+      <a href="">fff</a>
+      <a href="">dddd</a>
+      <a href="">dddddddd</a>
+    </div>
+
+    <style>
+      /* 1 id,class,选择器 */
+      /* 2 组合选择器 
+    后代选择器 (空格)
+    子选择器 (>)
+    相邻兄弟选择器 (+)
+    通用兄弟选择器 (~)
+    */
+      /* 3 伪类选择器 :*/
+      /* 未访问的链接 */
+      a:link {
+        color: #ff0000;
+      }
+      /* 已访问的链接 */
+      a:visited {
+        color: #00ff00;
+      }
+      /* 鼠标悬停链接 */
+      a:hover {
+        color: #ff00ff;
+      }
+      /* 已选择的链接 */
+      a:active {
+        color: #0000ff;
+      }
+
+      /* 4 伪元素选择则器 :: */
+      div::before {
+        content: "hhh";
+      }
+    </style>
+  </body>
+</html>

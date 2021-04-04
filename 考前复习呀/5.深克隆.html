@@ -28,7 +28,7 @@
         //s是数组或对象
         let type = typeof s;
         let res;
-        if (type == "Object") {
+        if (type == "object") {
           if (s.constructor == Array) {
             res = [];
           } else {
@@ -38,8 +38,8 @@
         else {
             return s
         }
-        for (item in s) {
-          if (typeof s[item] == "Object") {
+        for (item in s) {//数组和对象都可以for(in)
+          if (typeof s[item] == "object") {
             res[item] = deepCopy(item);
           } else {
             res[item] = s[item];
