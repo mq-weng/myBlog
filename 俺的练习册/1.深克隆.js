@@ -9,7 +9,7 @@ var obj = {
         1, 2, 3, 2
     ]
 };
-function deep(obj) { //练习
+function deep1(obj) { //练习
     let res;
     if (typeof obj == "object") {
         res = obj.constructor == Array ? [] : {};
@@ -27,6 +27,27 @@ function deep(obj) { //练习
     }
     return res;
 }
+
+let deep = function (arr) {
+    let res;
+    if (typeof arr == "object") {
+        res = arr.constructor == Array ? [] : {};
+    }
+    else {
+        return arr
+    }
+    for (i in arr) {
+        if (typeof arr == "object") {
+            res[i] = deep(arr[i]);
+        }
+        else {
+             res[i] = arr[i]
+        }
+    }
+    return res
+}
+
+
 let obj1 = deep(obj)
 obj.age = 0;
 console.log(obj)
