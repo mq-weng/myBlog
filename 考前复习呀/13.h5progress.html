@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <progress id="pro" value="0" max="100"></progress>
+    <button onclick="start(100)">下载</button>
+    <script>
+      let pro = document.getElementById("pro");
+      let start = function (n) {
+        if (n == 0) {
+          alert("下载完成");
+        }
+        n--;
+        pro.value = 100 - n;
+        setTimeout("start(" + n + ")", 100); //在一段时间间隔内重复，呈现出连贯的效果
+      };
+    </script>
+  </body>
+</html>
