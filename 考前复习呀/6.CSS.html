@@ -13,7 +13,14 @@
       <a href="">dddd</a>
       <a href="">dddddddd</a>
     </div>
+    <div class="test">
+      <span class="span">calc</span>
+    </div>
 
+    <div>
+      <img src="./辅助文件/4c3672dfc0b503ce65b58b69682b1077.jpeg" alt="" />
+    </div>
+    <h1>太美啦</h1>
     <style>
       /* 1 id,class,选择器 */
       /* 2 组合选择器 
@@ -43,6 +50,36 @@
       /* 4 伪元素选择则器 :: */
       div::before {
         content: "hhh";
+      }
+
+      .test {
+        width: 200px;
+        height: 200px;
+        background-color: bisque;
+      }
+      /*calc计算属性*/
+      .span {
+        /* display: block;  转化成块级元素*/
+        display: inline-block; /*想给行级元素设置宽高，记得用inline-block*/
+        width: calc(90% - 20px);
+        background-color: cadetblue;
+      }
+      img {
+        /* transform: rotate(10deg); 旋转  */
+        transform: translate(100px, 200px); /*上下移动*/
+      }
+      /*  rule  */
+      body {
+        background-color: pink;
+      }
+
+      @media (min-width: 30em) { /*1em = 16px*/
+        body {
+          background-color: blue;
+        }
+      }
+      h1 {
+        text-decoration: wavy underline lime ;
       }
     </style>
   </body>
