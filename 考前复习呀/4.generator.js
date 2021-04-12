@@ -22,4 +22,5 @@ for (item of next_id()) {
     console.log(item)
 }
 
+//实现异步
 

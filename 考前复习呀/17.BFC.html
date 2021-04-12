@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            background-color: aquamarine;
+            width: 200px;
+            border: black 1px solid;
+           /* overflow: hidden;/*1.清除浮动，也创建一个BFC，可能会有一些副作用*/
+            display: flow-root;/*一个新的 display 属性的值，它可以创建无副作用的 BFC。*/
+            margin: 20px;
+        }
+        .float{
+            float: left;
+            height: 200px;
+        }
+        .box1 {
+            background-color: rgb(167, 120, 49);
+            height: 500px;
+            width: 700px;
+            margin-top: 60px;
+            overflow: hidden;/**/
+        }
+        .box2 {
+            background-color: blanchedalmond;
+            height: 200px;
+            width: 200px;
+            margin-top: 60px;
+        }
+        .box3 {
+            background-color: blanchedalmond;
+            height: 200px;
+            width: 200px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="float">float</div>
+    </div>
+    <div class="box1">
+        <div class="box2">f44</div>
+        <div class="box3">cff</div>
+    </div>
+</body>
+</html>

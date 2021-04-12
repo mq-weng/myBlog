@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.cookie = "aaa=123";
+        document.cookie="username=John Doe; expires=Thu, 18 Dec 2043 12:00:00 GMT";
+        var x = document.cookie;
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 GMT"; //删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可，
+    </script>
+</body>
+</html>
