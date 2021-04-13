@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>双飞翼 1. 只用定位,margin空出left和right</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+      .container {
+        display: flex;
+        background-color: beige;
+      }
+      .center {
+        height: 200px;
+        background-color: bisque;
+        margin-left: 200px;
+        margin-right: 200px;
+        flex: 1;
+      }
+      .left {
+          width: 200px;
+          height: 200px;
+          background-color: aqua;
+          float: left;
+          position: absolute;
+          top: 0;
+      }
+      .right{
+          width: 200px;
+          height: 200px;
+          background-color: aqua;
+          right: 0;
+          position: absolute;
+          top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="center">vvv</div>
+    </div>
+    <div class="left">s</div>
+    <div class="right">b</div>
+    <div>dd</div>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三列布局</title>
+    <style>
+        /*还是圣杯 ，只用用定位,margin空出left和right*/
+        .container{
+            position: relative;
+        }
+        .center{
+            height: 500px;
+            margin-left: 200px;
+            margin-right: 200px;
+            background-color: aqua;
+        }
+        .left{
+            position: absolute;
+            top: 0;
+            width: 200px;
+            height: 500px;
+            background-color: antiquewhite; 
+        }
+        .right{
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 200px;
+            height: 500px;
+            background-color: antiquewhite; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="center">center</div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

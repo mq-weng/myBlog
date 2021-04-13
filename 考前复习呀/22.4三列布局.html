@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双飞翼2</title>
+    <style>
+        .container{
+            width: 100%;
+            height: 200px;
+            background-color: blue;
+        }
+        .center{
+            background-color: olivedrab;
+            height: 200px;
+            padding: 0 200px;
+        }
+        .left{
+            width: 200px;
+            height: 200px;
+            background-color: bisque;
+            margin-left: -100%;  /*把center的content-box的宽度（100%）减去*/
+        }
+        .right{
+            width: 200px;
+            background-color: bisque;
+            height: 200px;
+            margin-left: -200px;/*把自己的宽度减去*/
+        }
+        .container,
+        .left,
+        .right{ /*浮动本该在一行，left和right被挤下去了*/
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="center">aaaa</div>
+    </div>
+    <div class="left"></div>
+    <div class="right"></div>
+</body>
+</html>

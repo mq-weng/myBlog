@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>居中</title>
+    <style>
+      .container {
+        width: 500px;
+        height: 500px;
+        background-color: aquamarine;
+        position: relative;
+        margin: 5px;
+      }
+      .box1 {
+        /*知道小盒子宽高的时候*/
+        background-color: beige;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        /* top: 50%;           1. 
+        left: 50%;
+        margin-left: -50px;
+        margin-top: -50px; */
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto; /*   2. */
+      }
+      .box2 {
+        /*不知道小盒子宽高           3. */
+        position: absolute;
+        background-color: beige;
+        top: 50%;
+        left: 50%;;
+        transform: translate(-50%, -50%);
+      }
+
+      .flex-box {   /*       4.只在父级配置flex*/
+        width: 500px;
+        height: 500px;
+        background-color: aquamarine;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .js-box {
+        width: 500px;
+        height: 500px;
+        background-color: aquamarine;
+        margin: 5px;
+        position: relative;
+      }
+      .small {
+          width: 20px;
+          height: 20px;
+          background-color: beige;
+      }
+      #small {
+          position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box1"></div>
+    </div>
+    <div class="container">
+      <div class="box2">xxxxx</div>
+    </div>
+  </body>
+
+  <div class="flex-box">
+    <div class="small" >ssss</div>
+  </div>
+
+   <div class="js-box" id="js-box">
+        <div id="small">js方法</div>
+   </div>
+  <script>
+      let jsBox = document.getElementById('js-box')    /*    5.  用js*/
+      let small = document.getElementById('small')
+      let bigh = jsBox.offsetHeight
+      let bigw = jsBox.offsetWidth
+      let h = small.offsetHeight
+      let w = small.offsetWidth
+      small.style.left = (bigw - w)/2 + 'px'  /* 记得加上 px */
+      small.style.top = (bigh - h)/2 + 'px'
+  </script>
+</html>
