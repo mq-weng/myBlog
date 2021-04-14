@@ -37,6 +37,23 @@
             width: 200px;
             margin-top: 60px;
         }
+        .box4{
+            overflow: hidden;  /*兄弟之间的margin要用别的box把把一个兄包裹起来*/
+        }
+        .brother {
+            margin-bottom: 20px;
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            overflow: hidden;
+        }
+        .sister{
+            margin-top: 50px;
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -46,6 +63,12 @@
     <div class="box1">
         <div class="box2">f44</div>
         <div class="box3">cff</div>
+    </div>
+    <div >
+        <div class="box4">
+            <div class="brother">ddd</div>
+        </div>
+        <div class="sister">fddd</div>
     </div>
 </body>
 </html>
