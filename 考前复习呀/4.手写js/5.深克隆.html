@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深克隆</title>
+  </head>
+  <body>
+    <script>
+      var obj1 = {
+        name: "xixi",
+        age: "22",
+        brother: {
+          name: "huahua",
+          age: "8",
+        },
+      };
+      //深克隆  方法一
+      obj3 = JSON.stringify(obj1); //JSON只能拷贝对象数组字符串等,不能拷贝方法
+      let obj2 = JSON.parse(obj3);
+      obj1.age = 88;
+      console.log(obj2);
+      console.log(obj1);
+
+      //深克隆  方法二
+      function deepCopy(s) {
+        //s是数组或对象
+        let type = typeof s;
+        let res;
+        if (type == "object") {
+          if (s.constructor == Array) {
+            res = [];
+          } else {
+            res = {};
+          }
+        }
+        else {
+            return s
+        }
+        for (item in s) {//数组和对象都可以for(in)
+          if (typeof s[item] == "object") {
+            res[item] = deepCopy(item);
+          } else {
+            res[item] = s[item];
+          }
+        }
+        return res;
+      }
+      console.log(deepCopy(obj1));
+      console.log(deepCopy([{a:444,b:555},"dd"]))
+    </script>
+  </body>
+</html>

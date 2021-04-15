@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雪碧图</title>
+    <style>
+        .box{
+            background-color: aqua;
+            width: 500px;
+            height: 500px;
+            background-image: url(./辅助文件/雪碧图.png);
+            background-position: 50% 50%; /*把背景图片居中*/
+            background-repeat: no-repeat;
+        }
+        /* CSS雪碧图即CSS Sprites，
+        也有人叫它CSS精灵，是一种CSS图像合并技术，
+        该方法是将小图标和背景图像合并到一张图片上，
+        然后利用CSS的背景定位来显示需要显示的图片部分。*/
+        .box1{
+            margin-top: 20px;
+            background-color: aqua;
+            width: 500px;
+            height: 500px;
+            background-repeat: no-repeat;
+        }
+        span{
+            background-image: url(./辅助文件/雪碧图.png);
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            border: white 1px solid;
+            margin: 5px
+        }
+        .icon1{
+            background-position: 0 0;
+        }
+        .icon2{
+            background-position: -40px 0;/*相当于把xy轴来回挪动*/
+        }
+        .icon3{
+            background-position: 0 -25px;
+        }
+        .icon4{
+            background-position: -40px -25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+    </div>
+    <div class="box1">
+        <span class="icon1"></span>
+        <span class="icon2"></span>
+        <span class="icon3"></span>
+        <span class="icon4"></span>
+    </div>
+</body>
+</html>
