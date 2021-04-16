@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="box" class="classa">文本值</div>
+        <script>
+            window.onload=function(){
+                var box=document.getElementById("box");
+                //元素节点
+                console.log(box.nodeName);   //DIV 元素标签名大写
+                console.log(box.nodeValue);  //null
+                console.log(box.nodeType);   //1
+                //属性节点
+                var attr=box.getAttributeNode('class');
+                console.log(attr.nodeName);   //class
+                console.log(attr.nodeValue);  //classa
+                attr.nodeValue="classb";      //设置nodeValue
+                console.log(attr.nodeValue);  //classb
+                console.log(attr.nodeType);   //2
+                //文本节点
+                var txt=box.firstChild;
+                console.log(txt.nodeName);   //#text
+                console.log(txt.nodeValue);  //文本值
+                console.log(txt.nodeType);   //3
+            }
+
+        </script>
+</body>
+</html>

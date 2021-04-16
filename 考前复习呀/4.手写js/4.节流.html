@@ -18,24 +18,26 @@
             console.log(Math.random())
         }
         //节流就是在一段时间间隔内多次触发，只响应一次
-        /*function throttle(fn, delay) {
-            let timer;
-            if (timer) return
-             return function () {
-                timer = setTimeout(() => {
-                    fn();
-                    timer = null;
-                }, delay);
-             }
-        }*/
-        function throttle(fn, delay){
-            let pre = 0;
-            return function () {
-                let now = new Date();
-                if (now - pre > delay){
-                    pre = now;
-                    fn()
-                }
+        function throttle (fn, delay) {  //1.利用setTimeOut()
+          let timer;
+          return function () {
+            if(timer) return //如果在触发时间内就不再执行
+            timer = setTimeout(() => {
+              fn();
+              timer = null;
+            }, delay)
+          }
+        }
+
+
+        function throttle1(fn, delay){  //2.用时间戳
+          let pre = 0;
+            return function(){
+              let now = new Date()
+              if(now - pre > delay){
+                fn();
+                pre = now;
+              }
             }
         }
 

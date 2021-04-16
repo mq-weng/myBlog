@@ -15,7 +15,7 @@ let tr = {
 // fn1.count()
 // fn1.count()
 // console.log(fn1.getNum());//2
-var fn = require('./辅助文件/2-1闭包模块化')
+var fn = require('../辅助文件/2-1闭包模块化')
 fn.count()
 fn.count()
 console.log(fn.getNum());

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //map() 方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
+      //filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+      //forEach() 方法用于调用数组的每个元素，并将元素传递给回调函数。
+      let data = [
+        {
+          id: 1,
+          pid: 0,
+          name: "黑龙江省",
+        },
+        {
+          id: 2,
+          pid: 1,
+          name: "绥化",
+        },
+        {
+          id: 3,
+          pid: 2,
+          name: "安达",
+        },
+        {
+          id: 4,
+          pid: 0,
+          name: "吉林省",
+        },
+        {
+          id: 5,
+          pid: 4,
+          name: "吉林市",
+        },
+        {
+          id: 6,
+          pid: 1,
+          name: "大庆",
+        },
+      ];
+
+
+      function toTree(data) {
+        let parents = data.filter((data) => data.pid == 0);
+        let children = data.filter((data) => data.pid != 0);
+        separate(parents, children);
+        return parents;
+      }
+//递归处理
+      function separate(parents, children) {
+        parents.map((p) => {
+            children.map((c, i) => {
+              if (p.id === c.pid) {
+                  let _children  = JSON.parse(JSON.stringify(children)); //children是引用类型
+                  _children.splice(i, 1);
+                separate([c], _children)
+                if (p.children) {
+                  p.children.push(c);
+                } else {
+                  p.children = [c];
+                }
+              }
+          });
+        });
+      }
+
+
+//非递归
+    const s  =  toTree(data);
+    console.log(s)
+    </script>
+  </body>
+</html>
