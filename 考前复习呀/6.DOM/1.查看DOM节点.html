@@ -4,32 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>DOM</title>
 </head>
 <body>
-    <div id="box" class="classa">文本值</div>
-        <script>
-            window.onload=function(){
-                var box=document.getElementById("box");
-                //元素节点
-                console.log(box.nodeName);   //DIV 元素标签名大写
-                console.log(box.nodeValue);  //null
-                console.log(box.nodeType);   //1
-                //属性节点
-                var attr=box.getAttributeNode('class');
-                console.log(attr.nodeName);   //class
-                console.log(attr.nodeValue);  //classa
-                attr.nodeValue="classb";      //设置nodeValue
-                console.log(attr.nodeValue);  //classb
-                console.log(attr.nodeType);   //2
-                //文本节点
-                var txt=box.firstChild;
-                console.log(txt.nodeName);   //#text
-                console.log(txt.nodeValue);  //文本值
-                console.log(txt.nodeType);   //3
-            }
+    <div id="container">
+        <ul>
+            <li>huhu</li>
+            <li>sksks</li>
+        </ul>
+        <button id='huhu' onclick="target(event)">
+            点击
+        </button>
+        <div id="nini" onclick="target(event)">
+            fnj
+            <button id="lili" onclick="target(event)">
+                点他
+            </button>
+        </div>
+    </div>
+    <script>
+        let con = document.getElementById("container") //nodlist[text,ul,text]连空格也算
+      console.log(con.childNodes)
+      console.log(con.attributes)//返回节点的属性
+      console.log(con.nodeName) //div
+      console.log(con.nodeType)//1
+      console.log(con.nodeValue)//null
 
-        </script>
+      //e.target
+    let target = function(e) {
+        console.log(e.target.id)
+        console.log(e.currentTarget)
+    }
+
+    </script>
 </body>
 </html>

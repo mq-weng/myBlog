@@ -18,3 +18,13 @@ console.log(lo)
 const arrStr = 'info.address.location';
 const loc = arrStr.split('.').reduce((newObj, k) => newObj[k], obj)
 console.log(loc)
+
+//
+let ob = {
+    age: 11,
+    age1: 12,
+    age3: 0
+}
+let key = Object.keys(ob)
+
+console.log(Object.assign(ob))
