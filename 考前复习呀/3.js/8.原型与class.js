@@ -122,3 +122,7 @@ function SuperType() {
    }
   c2 = new c1()
   c1.name1()
+
+  let pjj = 'a';
+var person = 'b';
+debugger

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双向数据绑定</title>
+</head>
+<body>
+    <div>
+        <div id="spanName">fff</div>
+        <input  name="" id="inpName">
+    </div>
+    <script>
+        let inpName = document.getElementById('inpName');
+        let spanName = document.getElementById('spanName')
+        let obj = {
+            name: ''
+        }
+        obj = new Proxy(obj,{
+            get(target, prop){
+                return target[prop]
+            },
+            set(target, prop,value){
+                target[prop] = value;
+                observer()
+            }
+        });
+        function observer() {
+            spanName.innerHTML = obj.name;
+        }
+        inpName.oninput = function () {
+            obj.name = this.value
+        }
+    </script>
+</body>
+</html>
