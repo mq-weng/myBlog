@@ -45,3 +45,7 @@ let format = n => {
     }
 }
 console.log(format(12323.33))  // '12,323.33'
+
+let a = "aessssessss"
+var reg=/s+/;  //[ 'ssss', index: 2, input: 'aessssessss', groups: undefined ]
+console.log(reg.exec(a))
