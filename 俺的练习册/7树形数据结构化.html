@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let data = [
+        {
+          id: 1,
+          pid: 0,
+          name: "黑龙江省",
+        },
+        {
+          id: 2,
+          pid: 1,
+          name: "绥化",
+        },
+        {
+          id: 3,
+          pid: 2,
+          name: "安达",
+        },
+        {
+          id: 4,
+          pid: 0,
+          name: "吉林省",
+        },
+        {
+          id: 5,
+          pid: 4,
+          name: "吉林市",
+        },
+        {
+          id: 6,
+          pid: 1,
+          name: "大庆",
+        },
+      ];
+
+      function totree(data) {
+        let parent = data.filter((item) => {
+          return item.pid === 0;
+        });
+        let children = data.filter((item) => {
+          return item.pid != 0;
+        });
+
+        function spear(parent, children) {
+          parent.map((p) => {
+            children.map((c, i) => {
+              if (p.id == c.pid) {
+                let _children = JSON.parse(JSON.stringify(children));
+                _children.splice(i, 1);
+                spear([c], _children);
+                p.children ? p.children.push(c) : p.children = [c];
+              }
+            });
+          });
+        }
+        spear(parent, children);
+        return parent;
+      }
+
+      console.log(totree(data));
+    </script>
+  </body>
+</html>
