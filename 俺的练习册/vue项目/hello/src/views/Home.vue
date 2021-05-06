@@ -17,7 +17,7 @@
       <option value="3">xiaol</option>
     </select>
     <p>{{com}}</p>
-
+    <p>{{test()}}</p>
   </div>
 </template>
 <style >
@@ -45,6 +45,11 @@ export default {
     return {
       name: '',
       age: null,
+    }
+  },
+  methods: {
+    test(){
+      console.log(typeof Vue)
     }
   },
   watch:{      //watch侦听 name的变化

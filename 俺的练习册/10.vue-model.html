@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>model</title>
+  </head>
+  <body>
+    <div id="container">
+      <textarea
+        name="texarea"
+        id=""
+        cols="30"
+        rows="10"
+        v-model="textarea"
+      ></textarea>
+      <p>{{textarea}}</p>
+
+      <input
+      type="checkbox"
+      v-model="toggle"
+      true-value="yes"
+      false-value="no"
+    >
+    <p>{{toggle}}</p>
+
+     </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.config.productionTip = false;
+    </script>
+
+    <script>
+      var vm = new Vue({
+        el: "#container",
+        data() {
+          return {
+            textarea: "",
+            toggle: ""
+          };
+        },
+        methods: {},
+        watch: {
+          textarea: function(){
+            console.log(this.textarea);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

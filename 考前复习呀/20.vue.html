@@ -9,6 +9,7 @@
 <body>
     <div id="app">
         <span>{{message}}</span>
+        <div>{{test()}}</div>
       </div>
       <script src="./辅助文件/node_modules/vue/dist/vue.js"></script>
      <script>    
@@ -16,9 +17,14 @@
         el: '#app',
         data: {
           message: 'Hello Vue!'
+        },
+        methods: {
+           test() {
+            console.log(typeof Vue)
+          }
         }
       })
-
+    
       
      </script>
 </body>

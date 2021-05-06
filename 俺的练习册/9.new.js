@@ -15,3 +15,6 @@ function _new(P) {
 
 let p = _new(P);
 p.say()
+
+console.log(typeof Vue)
+console.log(typeof Object)
