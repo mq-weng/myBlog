@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="contenier">
+        <div ref="div" @click="fn()">{{msg}}</div>
+        <div>
+            {{msg1}}
+        </div>
+        <div>
+            {{msg2}}
+        </div>
+        <button @click="fn()">change</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.config.productionTip = false;
+    </script>
+    <script>
+        var vm = new Vue({
+            el: "#contenier",
+            data() {
+                return {
+                    msg: "hello",
+                    msg1: "msg1",
+                    msg2: "msg2"
+                }
+            },
+            methods: {
+                fn(){
+                    this.msg = "变化后不hello",
+                    this.msg1 = this.$refs.div.innerHTML;
+                    this.$nextTick(() => {
+                        this.msg2 = this.$refs.div.innerHTML;//this.$refs.div.innerHTML是变化的dom
+                    })
+                },
+            }
+        })
+    </script>
+</body>
+</html>
