@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数柯里化</title>
+  </head>
+  <body>
+    <script>
+      function curry1(fn, curArg) {
+        return function () {
+            let _args = Array.prototype.slice.call(arguments);
+            if(curArg){
+                _args = _args.concat(curArg);
+            }
+            if(_args.length >= fn.length) {
+                console.log(_args)
+                return fn(..._args);
+            }
+            console.log("不断收集的过程",_args)
+            return curry(fn, _args);
+        }
+      }
+      function curry(fn, ...args) {
+          console.log(args) //这个就是通过不断给curry加预设参数来收集参数
+        return fn.length > args.length ? curry.bind(null, fn, ...args) : fn(...args);
+      }
+      function sum(a, b, c) {
+        console.log( a + b + c);
+      }
+      fn = curry(sum);
+    //   fn(1, 2, 3); // 6
+    //   fn(1, 2)(3); // 6
+    //   fn(1)(2, 3); // 6
+      fn(1)(2)(3); // 6
+    </script>
+  </body>
+</html>

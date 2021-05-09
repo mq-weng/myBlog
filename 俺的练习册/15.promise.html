@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise模拟</title>
+  </head>
+  <body>
+    <script>
+      /*这是用构造函数写的，用class写也行*/
+      let pending = "Pending";
+      let fulfiled = "Fulfiled";
+      let rejected = "Rejected";
+
+      function myPromise(exector) {
+        this.status = pending; //初始化状态
+        this.value = undefined; // 用于保存 resolve 或者 rejected 传入的值
+        this.onRejectCallback = []; //失败回调数组
+        this.onResolveCallback = []; //成功回调数组
+
+        resolve = (value) => {
+          if (this.status === "Pending") {
+            this.status = fulfiled;
+            this.value = value;
+            //这里执行成功回调
+            this.onResolveCallback.forEach((fn) => fn())
+          }
+        };
+        reject = (value) => {
+          if (this.status === "Pending") {
+            this.status = rejected;
+            this.value = value;
+            //这里执行失败回调
+            this.onRejectCallback.forEach((fn => fn()))
+          }
+        };
+        try {
+          exector(resolve, reject);
+        } catch (error) {
+          reject(error);
+        }
+      }
+
+      //一系列的then，注意then是有执行顺序的，必须先执行完前一个
+      myPromise.prototype.then = function (onResolve, onReject) {
+        return new myPromise((resolve, reject) => {
+        // 首先判断两个参数是否为函数类型，因为这两个参数是可选参数
+
+        onResolve =
+          typeof onResolve == "function"
+            ? onResolve
+            : function (value) {
+                return value;
+              };
+        onReject =
+          typeof onReject == "function"
+            ? onReject
+            : function (error) {
+                return error;
+              };
+
+
+        //如果为pending状态，不执行，放进回调队列里面
+        if (this.status === pending) {
+          this.onRejectCallback.push(onResolve);
+          this.onRejectCallback.push(onReject);
+        }
+
+        //如果为凝固状态状态，直接返回结果
+        if (this.status === fulfiled) {
+          try{
+          const result = onResolve(this.value); // 承前
+          return result instanceof MyPromise? result.then(resolve, reject) : resolve(result); //启后
+        }catch(err){
+          reject(err)
+        }
+        }
+        if (this.status === rejected) {
+          try{
+          const result = onResolve(this.value); // 承前
+          return result instanceof MyPromise? result.then(resolve, reject) : resolve(result); //启后
+        }catch(err){
+          reject(err)
+        }
+        }
+        })
+      }
+
+      let p = new myPromise((resolve, reject) => {
+        let time = Math.random();
+        if (time < 0.5) {
+          resolve("成功");
+        } else {
+          reject("失败");
+        }
+      });
+      p.then((res) => {
+        console.log(res);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数柯里化</title>
+  </head>
+  <body>
+    <script>
+      /*ES6的写法*/
+      function keli(fn, ...args) {
+        //fn.length = 3
+        return fn.length <= args.length
+          ? fn(...args)
+          : keli.bind(null, fn, ...args); //bind预设初始参数，拿到上一次解构的参数
+      }
+      /*递归写法*/
+//bind
+// Currying(柯里化)，是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，
+// 并且返回接受余下的参数而且返回结果的新函数的技术
+// 使一个函数拥有预设的初始参数，只要将这些参数作为bind的参数写在this的后面。
+// 当绑定函数被调用时，这些参数会被插入到目标函数的参数列表的开始位置，传递给绑定函数的参数会跟在他们后面
+      function curry(fn, currArgs) {
+        return function () {
+          let args = Array.prototype.slice.call(arguments);
+          // 首次调用时，若未提供最后一个参数currArgs，则不用进行args的拼接
+          if (currArgs !== undefined) {
+            args = args.concat(currArgs);//1,2 //1，2，3
+            console.log("args",args)
+          }
+          // 递归调用
+          if (args.length < fn.length) {
+            return curry(fn, args);//把1传过去  //把1，2传过去
+          }
+          // 递归出口
+          return fn.apply(null, args);
+        };
+      }
+      function sum(a, b, c) {
+        console.log(a + b + c);
+      }
+      const fn = keli(sum);
+      fn(1, 2, 3); // 6
+      fn(1, 2)(3); // 6
+      fn(1)(2, 3); // 6
+      fn(1)(2)(3); // 6
+    </script>
+  </body>
+</html>

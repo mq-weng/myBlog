@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>throtlle</title>
+  </head>
+  <body>
+    <div>
+      <button id="btn">点击</button>
+    </div>
+
+    <script>
+      let btn = document.getElementById("btn");
+
+      function fn() {
+        console.log("执行了");
+        console.log(new Date())
+      }
+
+      //在一段时间内只响应一次
+      function throttle(fn, order) {
+        let time;
+        return function () {
+           if(!time){
+               time = setTimeout(() => {
+                   fn();
+                  time = null;
+               }, order)
+           }
+        };
+      }
+
+      btn.addEventListener("click", throttle(fn, 1000));
+    </script>
+  </body>
+</html>
