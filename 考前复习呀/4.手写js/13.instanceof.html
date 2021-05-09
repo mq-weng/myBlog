@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>instanceof</title>
+</head>
+<body>
+    
+    <script>
+        let arr = [];
+        //就是看类型是否出现在对象的原型链里面
+        console.log(arr instanceof Array) //true
+        //arr.__proto__ 等于 Object.getPrototypeOf(arr);
+        function myInstanceof(arr, Arr){
+            let ArrayPrototype = Array.prototype; //类型的原型
+            while(arr.__proto__) {
+                if(arr.__proto__ === ArrayPrototype){
+                    return true;
+                }
+                arr = arr.__proto__
+            } 
+            return false
+        }
+        console.log(myInstanceof(arr, Array)); //true
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@ function test1(arr) {
     return arr;
 }
 
-function test2(arr) {
+function test2(arr) { //随便生成一个位置
     let res = [];
     while (arr.length > 0) {
         let i = Math.floor(Math.random() * arr.length)
@@ -15,7 +15,7 @@ function test2(arr) {
     return res
 }
 
-function test3(arr) {
+function test3(arr) { //拿最后一个和前面的随机一个进行交换
     let x;
     console.log(arr)
     let j = arr.length - 1;
