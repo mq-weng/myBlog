@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //call的用法
+      var obj1 = {
+        name: "huhu",
+        age: 20,
+      };
+      function fn(name) {
+        console.log(this);
+        console.log("name = " + name);
+        console.log(this.age);
+      }
+    //   fn.call(obj1, "mimi"); //call的使用
+
+      //   1   自己写的call,利用了原型，其实是放在了上一级的原型里面
+      /*function myCall(obj, fn, ...args) {
+          obj.__proto__.fn = fn
+          obj.fn(...args);
+      }*/
+
+      //  2   先添加属性，再删除，刷新变成{name: "huhu", age: 20, fn: ƒ}
+      function myCall(obj, fn, ...args) {
+        obj.fn = fn;
+        // 调用函数
+        obj.fn(...args);
+        // 将属性删除
+        delete obj.fn;
+      }
+        // myCall(obj1, fn, "mimi");
+
+      //   3   挂载到Function上面，刷新变成{name: "huhu", age: 20, fn: ƒ}
+     Function.prototype.myCall = function (context, args) {
+        // 判断调用对象
+        if (typeof this !== "function") {
+          console.error("type error");
+        }
+        // 判断 context 是否传入，如果未传入则设置为 window
+        context = context || window;
+        // 将调用函数设为对象的方法
+        context.fn = this;
+        // 调用函数
+        context.fn(...args);
+        // 将属性删除
+        delete context.fn;
+      };
+     fn.myCall(obj1, "mimi");
+    </script>
+  </body>
+</html>

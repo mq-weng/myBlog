@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bind</title>
+  </head>
+  <body>
+    <script>
+      var obj1 = {
+        name: "huhu",
+        age: 20,
+      };
+      function fn(name) {
+        console.log(this);
+        console.log("name = " + name);
+        console.log(this.age);
+      }
+    //   fn.bind(obj1, "mini")();
+      //用call来实现
+      Function.prototype.myBind = function (obj, ...args) {
+        return () => {
+            this.call(obj, ...args);
+        }
+      };
+      fn.myBind(obj1, "mini")();
+    </script>
+  </body>
+</html>
