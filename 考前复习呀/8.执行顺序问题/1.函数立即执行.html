@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //函数立即执行就是在模仿块级作用域
+
+      /*   1
+        因为 {} 就是作用域，那么 a=2 执行的不是给全局变量 a 赋值为 2，
+而是想要将自执行函数的name 'a', 更改为 2，
+但这句话在 console.log 后证实未执行，即这句代码被忽略了。
+
+忽略了？没错。在第一行加一句代码 "use strict"; 在严格模式下执行就能看到报错 ：
+Uncaught TypeError: Assignment to constant variable （常数变量赋值），
+而这个错误在正常模式下是不会执行的，也就是静默错误，直接忽略执行。
+      */
+      // "use strict";
+      var a;
+      (function a() {
+        a = 20;
+        console.log(a); //[Function: a]
+      })();
+      console.log(a);
+
+      /*    2
+      */
+
+      var name = "Tom";
+      (function () {
+        //相当于在这里 var name;
+        if (typeof name == "undefined") {
+          var name = "Jack"; //这里是相当于在块级作用域里，进行变量提升
+          console.log("Goodbye" + name);
+        } else {
+          console.log("Hello" + name);
+        }
+      })(); //GoodbyeJack;
+
+      /*   3 
+      普通函数的this是声明时的上下文，箭头的是调用时的,
+      这跟立即执行就无关啦！！！！！！！！！！
+      */
+      var bo = 10;
+      function foo() {
+        console.log(bo);
+      }
+      (function () {
+        var bo = 20;
+        foo();  //10
+      })();
+      (function (func) {
+        var bo = 30;
+        var foo = func; //10这里注意
+        foo()
+      })(foo);
+
+
+
+
+    </script>
+  </body>
+</html>
