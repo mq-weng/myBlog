@@ -8,11 +8,12 @@
   </head>
   <body>
     <script>
-      function curry1(fn, curArg) {
+      function curry(fn, curArg) {
         return function () {
             let _args = Array.prototype.slice.call(arguments);
+          console.log(curArg)
             if(curArg){
-                _args = _args.concat(curArg);
+                _args = _args.concat(curArg); //把上一个传入参数和下一外部传入的参数连起来来
             }
             if(_args.length >= fn.length) {
                 console.log(_args)
@@ -22,7 +23,7 @@
             return curry(fn, _args);
         }
       }
-      function curry(fn, ...args) {
+      function curry1(fn, ...args) {
           console.log(args) //这个就是通过不断给curry加预设参数来收集参数
         return fn.length > args.length ? curry.bind(null, fn, ...args) : fn(...args);
       }
