@@ -23,6 +23,7 @@
             return curry(fn, _args);
         }
       }
+      
       function curry1(fn, ...args) {
           console.log(args) //这个就是通过不断给curry加预设参数来收集参数
         return fn.length > args.length ? curry.bind(null, fn, ...args) : fn(...args);
