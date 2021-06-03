@@ -25,8 +25,6 @@ function deep(root) {
         if (r.right) d(r.right);
     }
     d(root);
-    let re = res;
-    res = null;
-    return re
+    return res
 }
 console.log(deep(root));
